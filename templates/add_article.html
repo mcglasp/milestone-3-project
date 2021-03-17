@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="light-blue-text text-darken-4 center-align">Add Article</h3>
+
+<div class="container px-4">
+    <form method="POST" action="{{ url_for('add_article') }}">
+        <div class="row">
+            <div class="col-3 form-outline">
+                <input id="title" name="title" type="text" minlength="3" maxlength="50" class="validate form-control"
+                    required />
+                <label class="form-label" for="title">Title</label>
+            </div>
+            <div class="col-3 form-outline">
+                <input id="page_count" name="page_count" type="text" minlength="3" maxlength="50"
+                    class="validate form-control" required />
+                <label class="form-label" for="page_count">Page Count</label>
+            </div>
+            <div class="col-3 form-outline">
+                <input id="layout" name="layout" type="text" minlength="3" maxlength="50" class="validate form-control"
+                    required />
+                <label class="form-label" for="layout">Layout</label>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-outline">
+                        <textarea class="form-control" id="description" rows="4" minlength="5" maxlength="200"
+                            required></textarea>
+                        <label class="form-label" for="description">Description</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-outline">
+                        <textarea class="form-control" id="notes" rows="4" minlength="5" maxlength="200"
+                            required></textarea>
+                        <label class="form-label" for="notes">Notes</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-outline">
+                        <select id="section" name="section" class="validate" required>
+                            <option value="" disabled selected>Section</option>
+                            {% for section in sections %}
+                            <option value="{{ section.section }}">{{ section.section }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-outline">
+                        <select id="editor" name="editor" class="validate" required>
+                            <option value="" disabled selected>Editor</option>
+                            {% for editor in editors %}
+                            <option value="{{ editor.editor }}">{{ editor.editor }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-outline">
+                        <select id="author" name="author" class="validate" required>
+                            <option value="" disabled selected>Author</option>
+                            {% for author in authors %}
+                            <option value="{{ author.author_name }}">{{ author.author_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-outline">
+                        <select id="month" name="month" class="validate" required>
+                            <option value="" disabled selected>Month</option>
+                            {% for month in months %}
+                            <option value="{{ month.month }}">{{ month.month }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-outline">
+                        <select id="year" name="year" class="validate" required>
+                            <option value="" disabled selected>Year</option>
+                            {% for year in years %}
+                            <option value="{{ year.year }}">{{ year.year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit btn-large light-blue darken-1 text-shadow">
+                        Add task <i class="fas fa-plus-square right"></i>
+                    </button>
+                </div>
+            </div>
+    </form>
+</div>
+</div>
+{% endblock %}

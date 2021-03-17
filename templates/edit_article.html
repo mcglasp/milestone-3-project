@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="light-blue-text text-darken-4 center-align">Edit Article</h3>
+
+<div class="container px-4">
+    <form method="POST" action="{{ url_for('add_article') }}">
+        <div class="row">
+            <div class="col-3 form-outline">
+                <label class="form-label" for="title">Title</label>
+                <input id="title" name="title" type="text" minlength="3" maxlength="50" class="validate form-control"
+                    value="{{ article.title }}" required />
+            </div>
+            <div class="col-3 form-outline">
+                <label class="form-label" for="page_count">Page Count</label>
+                <input id="page_count" name="page_count" type="text" minlength="3" maxlength="50"
+                    class="validate form-control" value="{{ article.page_count }}" required />
+            </div>
+            <div class="col-3 form-outline">
+                <label class="form-label" for="layout">Layout</label>
+                <input id="layout" name="layout" type="text" minlength="3" maxlength="50" class="validate form-control"
+                    value="{{ article.layout }}" required />
+            </div>
+            <div class="row">
+                    <div class="col-6 form-outline">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description" rows="4" minlength="5" maxlength="200"
+                            value="{{ article.description }}" required>{{ article.description }}</textarea>
+                    </div>
+                </div>
+                    <div class="col-6 form-outline">
+                        <label class="form-label" for="notes">Notes</label>
+                        <textarea value="{{ article.notes }}" class="form-control" id="notes" rows="4" minlength="5"
+                            maxlength="200" required>{{ article.notes }}</textarea>
+                    </div>
+                </div>
+  
+
+            <div class="row">
+           
+                    <div class="col-2 form-outline">
+                        <select id="section" name="section" class="validate" required>
+                            <option value="" disabled>Choose category</option>
+                            {% for section in sections %}
+                            {% if section.section == article.section %}
+                            
+                            <option value="{{ article.section }}" selected>Section</option>
+                            {% else %}
+                            <option value="{{ section.section }}">{{ section.section }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-outline">
+                <select id="editor" name="editor" class="validate" required>
+                    <option value="" disabled>Choose category</option>
+                    {% for editor in editors %}
+                        {% if editor.editor == article.editor %}
+                        <option value="{{ editor.editor }}" selected>{{ editor.editor }}</option>
+                        {% else %}
+                        <option value="{{ editor.editor }}">{{ editor.editor }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-outline">
+                        <select id="author" name="author" class="validate" required>
+                            <option value="" disabled>Author</option>
+                            {% for author in authors %}
+                            {% if author.author == article.author %}
+                            <option value="{{ article.author }}" selected>{{ author.author_name }}</option>
+                            {% else %}
+                            <option value="{{ article.author }}">{{ author.author_name }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-outline">
+                        <select id="month" name="month" class="validate" required>
+                            <option value="" disabled>Month</option>
+                            {% for month in months %}
+                            {% if month.month == article.month %}
+                            <option value="{{ month.month }}" selected>{{ month.month }}</option>
+                            {% else %}
+                            <option value="{{ month.month }}">{{ month.month }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-outline">
+                        <select id="year" name="year" class="validate" required>
+                            <option value="" selected>Year</option>
+                            {% for year in years %}
+                            {% if year.year == article.year %}
+                            <option value="{{ year.year }}" selected>{{ year.year }}</option>
+                            {% else %}
+                            <option value="{{ year.year }}">{{ year.year }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit btn-large light-blue darken-1 text-shadow">
+                        Add task <i class="fas fa-plus-square right"></i>
+                    </button>
+                </div>
+            </div>
+    </form>
+</div>
+</div>
+{% endblock %}
